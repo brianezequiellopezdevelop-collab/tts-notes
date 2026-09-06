@@ -50,3 +50,11 @@ export async function synthesizeDocument(id) {
 export async function deleteDocument(id) {
   await fetch(`${BASE_URL}/documents/${id}`, { method: 'DELETE' })
 }
+
+export async function sendHeartbeat() {
+  try {
+    await fetch(`${BASE_URL}/heartbeat`, { method: 'POST' })
+  } catch {
+    // Si falla, no hacemos nada especial - el backend simplemente no recibira el latido
+  }
+}

@@ -1,0 +1,42 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Compilar frontend
+        run: |
+          cd frontend
+          npm install
+          npm run build
+
+      - name: Crear paquete de distribucion
+        run: |
+          mkdir dist-package
+          cp -r backend dist-package/
+          cp -r frontend dist-package/
+          cp -r scripts dist-package/
+          cp -r docs dist-package/
+          cp README.md LICENSE iniciar.bat dist-package/
+          rm -rf dist-package/backend/venv
+          rm -rf dist-package/backend/data
+          rm -rf dist-package/backend/voices/*.onnx*
+          rm -rf dist-package/frontend/node_modules
+          cd dist-package
+          zip -r ../tts-notes.zip .
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: tts-notes.zip
