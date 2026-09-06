@@ -5,7 +5,7 @@ import os
 from fastapi import APIRouter, HTTPException, UploadFile, File
 from fastapi.responses import FileResponse
 from pathlib import Path
-from app.heartbeat import register_heartbeat
+
 
 from app.db import get_connection
 from app.schemas import NoteCreate, NoteResponse, NoteUpdate, DocumentResponse
@@ -194,7 +194,4 @@ def delete_document(doc_id: int):
     conn.close()
     return {"detail": "Documento eliminado"}
     
-@router.post("/heartbeat")
-def heartbeat():
-    register_heartbeat()
-    return {"status": "alive"}
+

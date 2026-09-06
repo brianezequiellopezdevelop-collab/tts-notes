@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { sendHeartbeat } from './api'
+
 import ThemeToggle from './components/ThemeToggle'
 import NoteList from './components/NoteList'
 import NoteForm from './components/NoteForm'
@@ -10,8 +10,6 @@ function App() {
   const [activeTab, setActiveTab] = useState('notes')
   const [notesRefreshKey, setNotesRefreshKey] = useState(0)
   const [docsRefreshKey, setDocsRefreshKey] = useState(0)
-useEffect(() => {
-  sendHeartbeat()
   const interval = setInterval(sendHeartbeat, 3000)
   return () => clearInterval(interval)
 }, [])

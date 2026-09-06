@@ -4,7 +4,6 @@ import subprocess
 import sys
 import webbrowser
 import time
-import os
 from pathlib import Path
 
 ROOT = Path(__file__).parent.parent
@@ -25,13 +24,9 @@ def main():
         print("No se encontro el entorno virtual. Ejecuta primero 'python scripts/setup.py'.")
         sys.exit(1)
 
-    env = os.environ.copy()
-    env["TTS_NOTES_STANDALONE"] = "1"
-
     process = subprocess.Popen(
         [str(venv_python()), "-m", "uvicorn", "app.main:app", "--host", "127.0.0.1", "--port", "8000"],
-        cwd=str(BACKEND),
-        env=env
+        cwd=str(BACKEND)
     )
 
     time.sleep(2)
