@@ -9,9 +9,9 @@ app = FastAPI(title="TTS Notes API")
 init_db()
 init_documents_table()
 
-app.include_router(router)
-
-
 @app.get("/")
 def health():
     return {"status": "ok"}
+    
+
+app.include_router(router, prefix="/api")
