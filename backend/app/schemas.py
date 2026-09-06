@@ -21,3 +21,11 @@ class NoteResponse(BaseModel):
 class NoteUpdate(BaseModel):
     title: Optional[str] = None
     text: Optional[str] = None
+
+
+class DocumentResponse(BaseModel):
+    id: int
+    filename: str
+    voice: Optional[str] = None
+    audio_path: Optional[str] = None
+    created_at: str

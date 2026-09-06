@@ -27,3 +27,20 @@ def init_db():
     """)
     conn.commit()
     conn.close()
+
+
+def init_documents_table():
+    conn = get_connection()
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS documents (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            filename TEXT NOT NULL,
+            file_path TEXT NOT NULL,
+            extracted_text TEXT,
+            voice TEXT,
+            audio_path TEXT,
+            created_at TEXT DEFAULT CURRENT_TIMESTAMP
+        )
+    """)
+    conn.commit()
+    conn.close()
