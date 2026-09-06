@@ -1,0 +1,16 @@
+# Entornos virtuales
+venv/
+__pycache__/
+*.pyc
+
+# Datos del usuario (base de datos y audios generados)
+backend/data/
+
+# Modelos de voz (pesados, se descargan aparte)
+backend/voices/*.onnx
+backend/voices/*.onnx.json
+
+# Editores
+*.swp
+backend/test_output.wav
+backend/test_output.wav
