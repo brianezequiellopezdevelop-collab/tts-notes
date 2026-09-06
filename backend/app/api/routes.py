@@ -1,5 +1,7 @@
 # backend/app/api/routes.py
 
+import os
+
 from fastapi import APIRouter, HTTPException, UploadFile, File
 from fastapi.responses import FileResponse
 from pathlib import Path
@@ -176,3 +178,17 @@ def get_document_audio(doc_id: int):
     if row is None or row["audio_path"] is None:
         raise HTTPException(status_code=404, detail="Audio no generado todavia")
     return FileResponse(row["audio_path"], media_type="audio/wav")
+    
+    
+@router.delete("/documents/{doc_id}")
+def delete_document(doc_id: int):
+    conn = get_connection()
+    row = conn.execute("SELECT * FROM documents WHERE id = ?", (doc_id,)).fetchone()
+    if row is None:
+        conn.close()
+        raise HTTPException(status_code=404, detail="Documento no encontrado")
+
+    conn.execute("DELETE FROM documents WHERE id = ?", (doc_id,))
+    conn.commit()
+    conn.close()
+    return {"detail": "Documento eliminado"}

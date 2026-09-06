@@ -46,3 +46,7 @@ export async function synthesizeDocument(id) {
   })
   return response.json()
 }
+
+export async function deleteDocument(id) {
+  await fetch(`${BASE_URL}/documents/${id}`, { method: 'DELETE' })
+}
