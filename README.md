@@ -36,7 +36,7 @@ No requiere git, Node.js, ni herramientas de desarrollo — solo Python.
 
 #### Linux
 
-1. Descargá el archivo `tts-notes.zip` desde la [página de Releases](https://github.com/tu-usuario/tts-notes/releases)
+1. Descargá el archivo `tts-notes.zip` desde la [página de Releases](https://github.com/brianezequiellopezdevelop-collab/tts-notes/releases)
 2. Descomprimilo:
 ```bash
    unzip tts-notes.zip -d tts-notes
@@ -56,7 +56,7 @@ No requiere git, Node.js, ni herramientas de desarrollo — solo Python.
 Requiere git y Node.js además de Python — usá esta vía si querés modificar el código o contribuir al proyecto.
 
 ```bash
-git clone https://github.com/tu-usuario/tts-notes.git
+git clone https://github.com/brianezequiellopezdevelop-collab/tts-notes.git
 cd tts-notes
 
 # Backend
