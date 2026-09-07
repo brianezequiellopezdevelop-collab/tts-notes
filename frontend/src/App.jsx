@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react'
-
+import { useState } from 'react'
 import ThemeToggle from './components/ThemeToggle'
 import NoteList from './components/NoteList'
 import NoteForm from './components/NoteForm'
@@ -10,9 +9,7 @@ function App() {
   const [activeTab, setActiveTab] = useState('notes')
   const [notesRefreshKey, setNotesRefreshKey] = useState(0)
   const [docsRefreshKey, setDocsRefreshKey] = useState(0)
-  const interval = setInterval(sendHeartbeat, 3000)
-  return () => clearInterval(interval)
-}, [])
+
   return (
     <div className="min-h-screen bg-[var(--bg)] text-[var(--text)] transition-colors duration-300">
       <div className="max-w-2xl mx-auto px-4 py-8">
@@ -20,7 +17,6 @@ function App() {
           <h1 className="text-3xl font-bold">TTS Notes</h1>
           <ThemeToggle />
         </div>
-
         <nav className="flex gap-2 mb-6 border-b border-[var(--border)]">
           <button
             onClick={() => setActiveTab('notes')}
@@ -43,7 +39,6 @@ function App() {
             Documentos PDF
           </button>
         </nav>
-
         {activeTab === 'notes' && (
           <div className="space-y-6">
             <NoteForm onNoteCreated={() => setNotesRefreshKey(k => k + 1)} />
